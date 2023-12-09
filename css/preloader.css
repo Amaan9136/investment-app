@@ -1,0 +1,23 @@
+/* Styles for the preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    z-index: 9999;
+}
+
+/* Adjust the size of the image as per your requirements */
+#preloader img {
+    width: 200px;
+    height: 200px;
+}
+
+.d-inline{
+    color: blue;
+}

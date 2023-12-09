@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Invite</title>
+<link rel="icon" href="img/LOGO.png" type="png">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="MobileOptimized" content="320" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="css/mainpage.css" rel="stylesheet" />
+<style>
+    body {
+    background-color: #000;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+  }
+</style>
+</head>
+
+<body>
+<div class="wrapper">
+  <div class="content">
+
+  </div>
+  <!-- footer -->
+  <footer class="footer">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="btn-group" role="group">
+          <button class="btn btn-primary btn-icon btn-underline active" id="homeButton"
+            onclick="location.href='mainpage.html'">
+            <img src="img/home.png" alt="Home" class="btn-icon-image">
+            <span class="btn-text"><br>Home</span>
+          </button>
+          <button class="btn btn-primary btn-icon btn-underline" id="teamButton"
+            onclick="location.href='inviteRecords.html'">
+            <img src="img/team.png" alt="inviteRecords" class="btn-icon-image">
+            <span class="btn-text"><br>Team</span>
+          </button>
+          <button class="btn btn-primary btn-icon btn-underline" id="inviteButton"
+            onclick="location.href='invite.html'">
+            <img src="img/invite.png" alt="Invite" class="btn-icon-image">
+            <span class="btn-text"><br>Invite</span>
+          </button>
+          <button class="btn btn-primary btn-icon btn-underline" id="profileButton"
+            onclick="location.href='profile.html'">
+            <img src="img/my.png" alt="Profile" class="btn-icon-image">
+            <span class="btn-text"><br>Profile</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+  crossorigin="anonymous"></script>
+<script src="script/mainpage.js"></script>
+</body>
+
+</html>
+
+
+---------------------------------------------------------------------
+MY SQL TABLES
+//NOTE: in invite TABLE level1Mobile, level2Mobile ,level3Mobile are of the previous users
+---------------------------------------------------------------------
+
+
+CREATE TABLE register (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  mobile VARCHAR(10) NOT NULL,
+  password VARCHAR(50) NOT NULL,
+  withdrawalPassword VARCHAR(50) NOT NULL,
+  invitationCode2store VARCHAR(8) NOT NULL,
+  balance DECIMAL(10, 2) DEFAULT 0.00,
+  byinvite DECIMAL(10, 2) DEFAULT 0.00,
+  recharge DECIMAL(10, 2) DEFAULT 0.00,
+  invested DECIMAL(10, 2) DEFAULT 0.00,
+  withdraw DECIMAL(10, 2) DEFAULT 0.00,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+ALTER TABLE register ADD INDEX idx_mobile (mobile);
+
+
+CREATE TABLE purchases (
+  id INT(11) PRIMARY KEY AUTO_INCREMENT,
+  mobile VARCHAR(10) COLLATE utf8mb4_general_ci NOT NULL,
+  product VARCHAR(50) COLLATE utf8mb4_general_ci NOT NULL,
+  invest_money DECIMAL(10,2) NOT NULL,
+  income_daily DECIMAL(10,2) NOT NULL,
+  daily_count INT(11) NOT NULL,
+  income_days INT(11) NOT NULL,
+  gift INT(11) NOT NULL,
+  total_income DECIMAL(10,2) NOT NULL,
+  purchase_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE bankdetails (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  mobile VARCHAR(10) NOT NULL,
+  holder_name VARCHAR(30),
+  account_number VARCHAR(20),
+  bank_name VARCHAR(10) NOT NULL,
+  ifsc_code VARCHAR(20)
+);
+
+CREATE TABLE withdrawApp (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  mobile VARCHAR(10),
+  withdrawamount DECIMAL(10, 2),
+  holder_name VARCHAR(30),
+  bank_name VARCHAR(10) NOT NULL,
+  ifsc_code VARCHAR(20),
+  account_number VARCHAR(20),
+  status ENUM('Pending', 'Success', 'Rejected') DEFAULT 'Pending',
+  `limit` INT DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE rechargeApp (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  mobile VARCHAR(10),
+  recharge_amount INT(10),
+  utr_number VARCHAR(20),
+  status ENUM('Pending', 'Success', 'Rejected') DEFAULT 'Pending',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE invite (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  previousUserMobile VARCHAR(10) NULL,
+  presentUserMobile VARCHAR(10) NULL,
+  level1Mobile VARCHAR(10) NULL,
+  level2Mobile VARCHAR(10) NULL,
+  level3Mobile VARCHAR(10) NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE flags (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  mobile VARCHAR(10),
+  reward INT DEFAULT 0,
+  purchase INT DEFAULT 0,
+  rewardbtn1 INT(10) DEFAULT 0,
+  rewardbtn2 INT(10) DEFAULT 0,
+  rewardbtn3 INT(10) DEFAULT 0
+);
+
+-- INSERT THIS ALONG WITH ABOVE
+INSERT INTO register (mobile, password, withdrawalPassword, invitationCode2store, balance, byinvite, recharge, invested, withdraw)
+VALUES ('8867305645', '8867305645', '8867305645', 'ADMININV', 80.00, 0.00, 0.00, 0.00, 0.00);
+INSERT INTO flags (mobile, reward , purchase , rewardbtn1, rewardbtn2, rewardbtn3) VALUES (8867305645, 0, 0, 0, 0, 0);
+
+
+
+---------------------------------------------------------------------
+Below code To converting TIME from Eastern Daylight Time (UTC-4) to Indian Standard Time (UTC+05:30) in data base during insert (infinityfree)
+
+below code is placed in sql and it will be shown in triggers...
+if not showed then use SQl:
+
+SHOW TRIGGERS
+---------------------------------------------------------------------
+
+
+-- Set DELIMITER for trigger creation
+DELIMITER //
+
+-- Create a trigger for the "register" table
+CREATE TRIGGER convert_register_timestamp_to_IST
+BEFORE INSERT ON register
+FOR EACH ROW
+BEGIN
+    SET NEW.created_at = CONVERT_TZ(NEW.created_at, '-04:00', '+05:30');
+END;
+//
+
+-- Reset DELIMITER to default
+DELIMITER ;
+
+-- Set DELIMITER for trigger creation
+DELIMITER //
+
+-- Create a trigger for the "purchases" table
+CREATE TRIGGER convert_purchases_timestamp_to_IST
+BEFORE INSERT ON purchases
+FOR EACH ROW
+BEGIN
+    SET NEW.purchase_date = CONVERT_TZ(NEW.purchase_date, '-04:00', '+05:30');
+END;
+//
+
+-- Reset DELIMITER to default
+DELIMITER ;
+
+-- Set DELIMITER for trigger creation
+DELIMITER //
+
+-- Create a trigger for the "bankdetails" table (Add trigger logic here if needed)
+CREATE TRIGGER convert_bankdetails_timestamp_to_IST
+BEFORE INSERT ON bankdetails
+FOR EACH ROW
+BEGIN
+    -- Add trigger logic here if needed
+END;
+//
+
+-- Reset DELIMITER to default
+DELIMITER ;
+
+-- Set DELIMITER for trigger creation
+DELIMITER //
+
+-- Create a trigger for the "withdrawApp" table
+CREATE TRIGGER convert_withdrawApp_timestamp_to_IST
+BEFORE INSERT ON withdrawApp
+FOR EACH ROW
+BEGIN
+    SET NEW.created_at = CONVERT_TZ(NEW.created_at, '-04:00', '+05:30');
+END;
+//
+
+-- Reset DELIMITER to default
+DELIMITER ;
+
+-- Set DELIMITER for trigger creation
+DELIMITER //
+
+-- Create a trigger for the "rechargeApp" table
+CREATE TRIGGER convert_rechargeApp_timestamp_to_IST
+BEFORE INSERT ON rechargeApp
+FOR EACH ROW
+BEGIN
+    SET NEW.created_at = CONVERT_TZ(NEW.created_at, '-04:00', '+05:30');
+END;
+//
+
+-- Reset DELIMITER to default
+DELIMITER ;
+
+-- Set DELIMITER for trigger creation
+DELIMITER //
+
+-- Create a trigger for the "invite" table
+CREATE TRIGGER convert_invite_timestamp_to_IST
+BEFORE INSERT ON invite
+FOR EACH ROW
+BEGIN
+    SET NEW.created_at = CONVERT_TZ(NEW.created_at, '-04:00', '+05:30');
+END;
+//
+
+-- Reset DELIMITER to default
+DELIMITER ;
+
+-- Set DELIMITER for trigger creation
+DELIMITER //
+
+-- Create a trigger for the "flags" table (Add trigger logic here if needed)
+CREATE TRIGGER convert_flags_timestamp_to_IST
+BEFORE INSERT ON flags
+FOR EACH ROW
+BEGIN
+    -- Add trigger logic here if needed
+END;
+//
+
+-- Reset DELIMITER to default
+DELIMITER ;
+
+
+---------------------------------------------------------------------
+{BELOW SQL- DAILY RUNNING QUIRES AT 12 AM} [USE THIS IN THE SAME ORDER]
+---------------------------------------------------------------------
+
+-- Delete Daily Income Free if there is more than one
+DELETE p1
+FROM purchases p1
+JOIN purchases p2 ON p1.mobile = p2.mobile
+WHERE p1.product = 'Daily Income Free'
+AND p1.id > p2.id;
+
+
+-- Update register table for total days = 60 [daily income - send income daily ] 
+UPDATE register AS r
+JOIN (
+  SELECT mobile, SUM(income_daily) AS total_income
+  FROM purchases
+  WHERE daily_count < 60 AND income_days = 60
+  GROUP BY mobile
+) p ON r.mobile = p.mobile
+SET r.balance = r.balance + CASE WHEN p.total_income IS NULL THEN 0 ELSE p.total_income END;
+
+
+-- Update daily count for all records
+UPDATE purchases
+SET daily_count = CASE
+    WHEN daily_count < income_days THEN daily_count + 1
+    ELSE daily_count
+  END;
+
+
+-- Delete or Drop rows where daily_count = income_days 
+-- dont use if u dont want to delete
+DELETE FROM purchases
+WHERE daily_count = income_days;
+
+-- To set zero request daily 
+UPDATE withdrawApp SET `limit` = 0;
+UPDATE flags SET reward = 0;
+UPDATE flags SET rewardbtn1 = 0;
+UPDATE flags SET rewardbtn2 = 0;
+UPDATE flags SET rewardbtn3 = 0;
+
+---------------------------------------------------------------------
+{IF NEEDED USE THIS QUIRY}
+
+
+-- To remove pending status and allowing to new application
+UPDATE withdrawapp SET `limit` = 0;
+UPDATE withdrawapp SET `status` = 'Success';
+
+
+-- To rearrange the IDs in DATABASE
+-- Register Table
+SET @row_number = 0;
+UPDATE `register`
+SET `id` = (@row_number := @row_number + 1)
+ORDER BY `id`;
+
+-- Purchases Table
+SET @row_number = 0;
+UPDATE `purchases`
+SET `id` = (@row_number := @row_number + 1)
+ORDER BY `id`;
+
+-- Bankdetails Table
+SET @row_number = 0;
+UPDATE `bankdetails`
+SET `id` = (@row_number := @row_number + 1)
+ORDER BY `id`;
+
+-- Withdrawapp Table
+SET @row_number = 0;
+UPDATE `withdrawapp`
+SET `id` = (@row_number := @row_number + 1)
+ORDER BY `id`;
+
+-- rechargeApp Table
+SET @row_number = 0;
+UPDATE `rechargeApp`
+SET `id` = (@row_number := @row_number + 1)
+ORDER BY `id`;
+
+-- Invite Table
+SET @row_number = 0;
+UPDATE `invite`
+SET `id` = (@row_number := @row_number + 1)
+ORDER BY `id`;
+---------------------------------------------------------------------
+
+
+https://youtu.be/M34R7u5URcg //CONVERT WEB TO Application
+
+
+
+
+generating invite code link:
+http://localhost:8080/tATA%20STEEL%20LTD/?invitationCode=code  
+
+
+
+    // Check if the current time is outside the range of 7:00 AM to 5:00 PM
+    if (currentHour < 7 || currentHour > 16) {
+      document.getElementById('alert-div2').style.display = 'block';
+      document.getElementById('alert-message2').textContent = 'The Withdrawal Application can only be submitted between 7:00 AM and 5:00 PM.';
+      return;
+    }
+
+---------------------------------------------------------------------
+$servername = "sql111.infinityfree.com";
+$username = "if0_34395351";
+$password = "u1rabYha2A";
+$dbname = "if0_34395351_earnify";
+---------------------------------------------------------------------

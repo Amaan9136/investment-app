@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Page</title>
+  <link rel="icon" href="img/LOGO.png" type="png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="MobileOptimized" content="320">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/preloader.css">
+
+  <style>
+    .app-img {
+      width: 90%;
+      /* APP TOP IMAGE width adjest here inside the app-img */
+      margin: 0 auto;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      text-align: center;
+      /* Center-align the content inside the app-img */
+    }
+
+    body {
+      margin: 0px;
+    }
+
+    .container {
+      font-size: small;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 5px;
+      padding-top: 10px;
+      background-color: #fff;
+      box-shadow: 0 0.053333rem 0.533333rem 0.053333rem #dfdfdf;
+    }
+
+    .img-size {
+      width: fit-content;
+      height: fit-content;
+      max-height: 200px;
+      margin: auto;
+    }
+
+    .form-group {
+      margin: 5px;
+    }
+
+    input {
+      border-radius: 20px !important;
+    }
+
+    .form-check-input {
+      height: 20px;
+      width: 20px;
+      border-radius: 50px !important;
+    }
+
+    .card-title {
+      text-align: left;
+      font-size: 18px;
+      color: #fff;
+    }
+
+
+    .heading {
+      padding: 2px;
+      display: flex;
+      align-items: center;
+      /* Center items vertically */
+      text-align: left;
+    }
+
+    .header-icon {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+    }
+
+    .close-icon {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+      margin-left: 20px;
+    }
+
+    .card-title {
+      margin-left: -20px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 18px;
+      margin: 5;
+      margin-top: 0.55rem;
+      flex: 1;
+    }
+
+    .form-check-input[type="checkbox"]:focus,
+    .form-check-input[type="checkbox"]:active {
+      background-color: rgb(105, 4, 11);
+      box-shadow: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="preloader">
+    <img src="img/LOGO.png" alt="Preloader Image">
+  </div>
+
+  <div class="heading">
+    <a href="login">
+      <img class="close-icon" src="img/close.png" alt="Login">
+    </a>
+    <h1 class="card-title">Register</h1>
+  </div>
+
+  <div class="app-img">
+    <img src="img/APP-IMG.png" class="d-block w-100 img-size" alt="...">
+  </div>
+
+  <div class="container">
+
+    <form id="register-form" action="" method="post">
+
+      <div id="alert-div2">
+        <div id="alert-message2" class="alert alert-sucess fade show" role="alert"></div>
+      </div>
+      <div id="alert-div1">
+        <div id="alert-message1" class="alert alert-danger fade show" role="alert"></div>
+      </div>
+
+      <div class="form-group">
+        <input type="text" id="mobile" name="mobile" class="form-control" placeholder="Enter Phone Number" required>
+      </div>
+
+      <div class="form-group">
+        <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" required>
+      </div>
+
+      <div class="form-group">
+        <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
+          placeholder="Re-enter password" required>
+      </div>
+
+      <div class="form-group">
+        <input type="password" id="withdrawalPassword" name="withdrawalPassword" class="form-control"
+          placeholder="Enter withdrawal password" required>
+      </div>
+
+      <div class="form-group">
+        <input type="text" id="invitationCode" name="invitationCode" class="form-control"
+          placeholder="Invitation code (optional)">
+      </div>
+
+      <div style="margin-top: 5; padding: 0;">
+        <div class="form-check">
+          <input type="checkbox" id="terms-checkbox" name="terms" class="form-check-input" required>
+          <label class="form-check-label" for="terms-checkbox">I Agree <a href="TandC" class="d-inline">Terms and
+              Conditions.</a></label>
+        </div>
+      </div>
+
+      <button type="submit" id="submit" class="btn btn-primary">Register</button>
+      <!-- Login script inside javascript depends on type="submit" not  id="submit"-->
+
+      <label class="form-label"><a href="login">Already have an account? Login</a></label>
+
+    </form>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+  <script src="script/alertmessage.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var preloader = document.getElementById("preloader");
+      // Simulating a 2-second delay for demonstration purposes
+      setTimeout(function () {
+        preloader.style.display = "none";
+      }, 2000);
+    });
+
+    // Get the URL parameter and give it invite code
+    const urlParams = new URLSearchParams(window.location.search);
+    const inviteCode = urlParams.get('invitationCode');
+    // Populate the input field with the invite code
+    document.getElementById('invitationCode').value = inviteCode;
+
+    const registerForm = document.querySelector("#register-form");
+
+    if (registerForm) {
+      registerForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const mobile = registerForm.elements.mobile.value;
+        const password = registerForm.elements.password.value;
+        const confirmPassword = registerForm.elements.confirmPassword.value;
+        const withdrawalPassword = registerForm.elements.withdrawalPassword.value;
+        const invitationCode = registerForm.elements.invitationCode.value;
+
+        if (mobile.length !== 10 || isNaN(parseInt(mobile))) {
+          showSuccessAlert1("Invalid Mobile Number, Re-Enter!");
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          showSuccessAlert1("Confirm Password does not match.");
+          return;
+        }
+
+        if (
+          password.length < 6 ||
+          /\s/.test(password) ||
+          withdrawalPassword.length < 6 ||
+          /\s/.test(withdrawalPassword)
+        ) {
+          showSuccessAlert1("Invalid password! Passwords should be at least 6 characters long and should not contain any spaces.");
+          return;
+        }
+
+        const registrationData = {
+          mobile: mobile,
+          password: password,
+          withdrawalPassword: withdrawalPassword,
+          invitationCode: invitationCode,
+        };
+
+        try {
+          const registerResponse = await fetch("php/register.php", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(registrationData),
+          });
+
+          const responseJson = await registerResponse.json();
+
+          if (responseJson.success) {
+            showSuccessAlert1("", true); // Remove danger message
+            alertDiv2.classList.remove("no-content");
+            showDangerAlert2("Registration Successful!", true);
+            setTimeout(() => {
+              window.location.href = "login";
+            }, 3000);
+          } else {
+            showSuccessAlert1(responseJson.message);
+          }
+        } catch (error) {
+          console.error("ERROR:".error);
+          console.log("Check register.php or config.php if not registering. this is due to invite code but it is registering. rather than that it is considered as this error")
+          showSuccessAlert1("", true); // Remove danger message
+            alertDiv2.classList.remove("no-content");
+            showDangerAlert2("Registration Successful!", true);
+            setTimeout(() => {
+              window.location.href = "login";
+            }, 3000);
+        }
+      });
+    }
+  </script>
+
+</body>
+
+</html>

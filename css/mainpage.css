@@ -1,0 +1,260 @@
+/* Change #000000 primary color
+ Change #xxxxxx secondary color 
+ rgb(105,4,11);  -> thick {pri}
+ #e40c14  ->active & border
+ rgb(228,12,20) ->active
+ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+    position: fixed;
+}
+
+.card-body {
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: bold;
+    text-align: center;
+    padding: 5px;
+    border: 2px solid #e40c14;
+    border-radius: 5px;
+    background-color: rgb(242, 242, 242);
+    box-shadow: 0px 0px 5px 0px #000000;
+}
+
+.card {
+    background-color: #fff;
+}
+
+.card-header {
+    background-color: #000000;
+    color: rgb(242, 242, 242);
+    padding: 5px;
+    margin-bottom: 0;
+    border-radius: 5px;
+}
+
+.card-section {
+    height: fit-content;
+    overflow-y: auto;
+}
+
+.model {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    display: inline;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+#investMoneyText,
+#purchaseModal {
+    font-weight: bold;
+}
+
+.card-img-top {
+    max-height: 180px;
+    border: solid 2px #e40c14;
+    border-radius: 3px;
+    margin: 0;
+    padding: 0;
+}
+
+.card-title {
+    font-size: 26px;
+    margin-bottom: .2rem;
+    margin-top: .5rem;
+    font-family: 'Roboto', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#white {
+    filter: invert(1);
+}
+
+div {
+    margin: 0;
+    padding: 0;
+}
+
+.footer {
+    padding: 0;
+    position: sticky;
+    bottom: 0;
+    z-index: 999;
+}
+
+.btn-group {
+    display: flex;
+    height: auto;
+}
+
+.col-md-12 , .btn-underline{
+    margin: 0.5px !important;
+}
+
+.btn-underline {
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.btn-icon .btn-icon-image {
+    width: 25%;
+    height: 18px;
+    margin: 0;
+    padding: 0;
+}
+
+.btn-icon .btn-text {
+    vertical-align: middle;
+    font-size: 16px;
+}
+
+h1,
+.btn,
+.btn-primary {
+    font-family: 'Roboto', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.btn {
+    background-color: rgb(105, 4, 11);
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.btn:hover {
+    background-color: rgb(228, 12, 20);
+    color: #fff;
+}
+
+.btn-underline:hover::after {
+    transform: scaleX(1);
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex-grow: 1;
+    align-items: center;
+}
+
+.btn-check:active+.btn-primary,
+.btn-check:checked+.btn-primary,
+.btn-primary.active,
+.btn-primary:active,
+.show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: rgb(228, 12, 20);
+    border-color: rgb(105, 4, 11);
+}
+
+.btn-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 2px;
+    background-color: #000;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+}
+
+.section-title {
+    color: #fff;
+    font-size: 16px;
+    margin: 0;
+}
+
+.list-item {
+    color: #fff;
+    margin-top: 5px;
+}
+
+.text-white {
+    color: #fff;
+}
+
+#alert-div1,
+#alert-div2,
+#alert-div3,
+#alert-div4,
+#alert-div5,
+#alert-div6,
+#alert-message1,
+#alert-message2,
+#alert-message3,
+#alert-message4,
+#alert-message5,
+#alert-message6 {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 2px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#alert-message1:empty,
+#alert-message2:empty,
+#alert-message3:empty,
+#alert-message4:empty,
+#alert-message5:empty,
+#alert-message6:empty,
+#alert-div1.no-content,
+#alert-div2.no-content {
+    display: none;
+}
+
+br {
+    margin: 0;
+}
+
+.btn-block {
+    display: block;
+}
+
+.text-16{
+    font-size: 16px;
+  }
+
+/* Style for the disabled and active buttons */
+.btn-primary.disabled,
+.btn-primary:disabled,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+  color: #fff;
+  background-color: rgb(228, 12, 20);
+}
+
+hr {
+    background-color: #fff;
+    margin: 1px -5px;
+    padding: 2px;
+  }
+
+  .btn-icon {
+    padding: 4px;
+    margin: 3px;
+}
